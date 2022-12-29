@@ -1,0 +1,16 @@
+G:\My Project\PanHouseAPI\PanHouse.Services\bin\Release\netcoreapp2.2\PanHouse.Services.deps.json
+G:\My Project\PanHouseAPI\PanHouse.Services\bin\Release\netcoreapp2.2\PanHouse.Services.dll
+G:\My Project\PanHouseAPI\PanHouse.Services\bin\Release\netcoreapp2.2\PanHouse.Services.pdb
+G:\My Project\PanHouseAPI\PanHouse.Services\bin\Release\netcoreapp2.2\PanHouse.Interface.dll
+G:\My Project\PanHouseAPI\PanHouse.Services\bin\Release\netcoreapp2.2\PanHouse.Model.dll
+G:\My Project\PanHouseAPI\PanHouse.Services\bin\Release\netcoreapp2.2\System.Data.SqlClient.dll
+G:\My Project\PanHouseAPI\PanHouse.Services\bin\Release\netcoreapp2.2\PanHouse.Interface.pdb
+G:\My Project\PanHouseAPI\PanHouse.Services\bin\Release\netcoreapp2.2\PanHouse.Model.pdb
+G:\My Project\PanHouseAPI\PanHouse.Services\bin\Release\netcoreapp2.2\System.Data.SqlClient.xml
+G:\My Project\PanHouseAPI\PanHouse.Services\obj\Release\netcoreapp2.2\PanHouse.Services.csprojAssemblyReference.cache
+G:\My Project\PanHouseAPI\PanHouse.Services\obj\Release\netcoreapp2.2\PanHouse.Services.csproj.CoreCompileInputs.cache
+G:\My Project\PanHouseAPI\PanHouse.Services\obj\Release\netcoreapp2.2\PanHouse.Services.AssemblyInfoInputs.cache
+G:\My Project\PanHouseAPI\PanHouse.Services\obj\Release\netcoreapp2.2\PanHouse.Services.AssemblyInfo.cs
+G:\My Project\PanHouseAPI\PanHouse.Services\obj\Release\netcoreapp2.2\PanHouse.Services.csproj.CopyComplete
+G:\My Project\PanHouseAPI\PanHouse.Services\obj\Release\netcoreapp2.2\PanHouse.Services.dll
+G:\My Project\PanHouseAPI\PanHouse.Services\obj\Release\netcoreapp2.2\PanHouse.Services.pdb

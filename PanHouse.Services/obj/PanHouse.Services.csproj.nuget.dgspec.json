@@ -1,0 +1,180 @@
+{
+  "format": 1,
+  "restore": {
+    "G:\\My Project\\PanHouseAPI\\PanHouse.Services\\PanHouse.Services.csproj": {}
+  },
+  "projects": {
+    "G:\\My Project\\PanHouseAPI\\PanHouse.Interface\\PanHouse.Interface.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "G:\\My Project\\PanHouseAPI\\PanHouse.Interface\\PanHouse.Interface.csproj",
+        "projectName": "PanHouse.Interface",
+        "projectPath": "G:\\My Project\\PanHouseAPI\\PanHouse.Interface\\PanHouse.Interface.csproj",
+        "packagesPath": "C:\\Users\\Shlok\\.nuget\\packages\\",
+        "outputPath": "G:\\My Project\\PanHouseAPI\\PanHouse.Interface\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Shlok\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "G:\\My Project\\PanHouseAPI\\PanHouse.Model\\PanHouse.Model.csproj": {
+                "projectPath": "G:\\My Project\\PanHouseAPI\\PanHouse.Model\\PanHouse.Model.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "G:\\My Project\\PanHouseAPI\\PanHouse.Model\\PanHouse.Model.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "G:\\My Project\\PanHouseAPI\\PanHouse.Model\\PanHouse.Model.csproj",
+        "projectName": "PanHouse.Model",
+        "projectPath": "G:\\My Project\\PanHouseAPI\\PanHouse.Model\\PanHouse.Model.csproj",
+        "packagesPath": "C:\\Users\\Shlok\\.nuget\\packages\\",
+        "outputPath": "G:\\My Project\\PanHouseAPI\\PanHouse.Model\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Shlok\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "G:\\My Project\\PanHouseAPI\\PanHouse.Services\\PanHouse.Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "G:\\My Project\\PanHouseAPI\\PanHouse.Services\\PanHouse.Services.csproj",
+        "projectName": "PanHouse.Services",
+        "projectPath": "G:\\My Project\\PanHouseAPI\\PanHouse.Services\\PanHouse.Services.csproj",
+        "packagesPath": "C:\\Users\\Shlok\\.nuget\\packages\\",
+        "outputPath": "G:\\My Project\\PanHouseAPI\\PanHouse.Services\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Shlok\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "G:\\My Project\\PanHouseAPI\\PanHouse.Interface\\PanHouse.Interface.csproj": {
+                "projectPath": "G:\\My Project\\PanHouseAPI\\PanHouse.Interface\\PanHouse.Interface.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.20, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

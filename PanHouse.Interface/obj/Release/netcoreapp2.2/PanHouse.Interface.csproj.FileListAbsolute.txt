@@ -1,0 +1,12 @@
+G:\My Project\PanHouseAPI\PanHouse.Interface\bin\Release\netcoreapp2.2\PanHouse.Interface.deps.json
+G:\My Project\PanHouseAPI\PanHouse.Interface\bin\Release\netcoreapp2.2\PanHouse.Interface.dll
+G:\My Project\PanHouseAPI\PanHouse.Interface\bin\Release\netcoreapp2.2\PanHouse.Interface.pdb
+G:\My Project\PanHouseAPI\PanHouse.Interface\bin\Release\netcoreapp2.2\PanHouse.Model.dll
+G:\My Project\PanHouseAPI\PanHouse.Interface\bin\Release\netcoreapp2.2\PanHouse.Model.pdb
+G:\My Project\PanHouseAPI\PanHouse.Interface\obj\Release\netcoreapp2.2\PanHouse.Interface.csprojAssemblyReference.cache
+G:\My Project\PanHouseAPI\PanHouse.Interface\obj\Release\netcoreapp2.2\PanHouse.Interface.csproj.CoreCompileInputs.cache
+G:\My Project\PanHouseAPI\PanHouse.Interface\obj\Release\netcoreapp2.2\PanHouse.Interface.AssemblyInfoInputs.cache
+G:\My Project\PanHouseAPI\PanHouse.Interface\obj\Release\netcoreapp2.2\PanHouse.Interface.AssemblyInfo.cs
+G:\My Project\PanHouseAPI\PanHouse.Interface\obj\Release\netcoreapp2.2\PanHouse.Interface.csproj.CopyComplete
+G:\My Project\PanHouseAPI\PanHouse.Interface\obj\Release\netcoreapp2.2\PanHouse.Interface.dll
+G:\My Project\PanHouseAPI\PanHouse.Interface\obj\Release\netcoreapp2.2\PanHouse.Interface.pdb

@@ -1,0 +1,14 @@
+G:\React Programs\PanHouseAPI\PanHouse\PanHouse\bin\Debug\netcoreapp2.2\PanHouse.deps.json
+G:\React Programs\PanHouseAPI\PanHouse\PanHouse\bin\Debug\netcoreapp2.2\PanHouse.runtimeconfig.json
+G:\React Programs\PanHouseAPI\PanHouse\PanHouse\bin\Debug\netcoreapp2.2\PanHouse.runtimeconfig.dev.json
+G:\React Programs\PanHouseAPI\PanHouse\PanHouse\bin\Debug\netcoreapp2.2\PanHouse.dll
+G:\React Programs\PanHouseAPI\PanHouse\PanHouse\bin\Debug\netcoreapp2.2\PanHouse.pdb
+G:\React Programs\PanHouseAPI\PanHouse\PanHouse\obj\Debug\netcoreapp2.2\PanHouse.csprojAssemblyReference.cache
+G:\React Programs\PanHouseAPI\PanHouse\PanHouse\obj\Debug\netcoreapp2.2\PanHouse.csproj.CoreCompileInputs.cache
+G:\React Programs\PanHouseAPI\PanHouse\PanHouse\obj\Debug\netcoreapp2.2\PanHouse.RazorAssemblyInfo.cache
+G:\React Programs\PanHouseAPI\PanHouse\PanHouse\obj\Debug\netcoreapp2.2\PanHouse.RazorAssemblyInfo.cs
+G:\React Programs\PanHouseAPI\PanHouse\PanHouse\obj\Debug\netcoreapp2.2\PanHouse.AssemblyInfoInputs.cache
+G:\React Programs\PanHouseAPI\PanHouse\PanHouse\obj\Debug\netcoreapp2.2\PanHouse.AssemblyInfo.cs
+G:\React Programs\PanHouseAPI\PanHouse\PanHouse\obj\Debug\netcoreapp2.2\PanHouse.RazorTargetAssemblyInfo.cache
+G:\React Programs\PanHouseAPI\PanHouse\PanHouse\obj\Debug\netcoreapp2.2\PanHouse.dll
+G:\React Programs\PanHouseAPI\PanHouse\PanHouse\obj\Debug\netcoreapp2.2\PanHouse.pdb
