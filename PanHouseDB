@@ -1,0 +1,1297 @@
+-- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
+--
+-- Host: localhost    Database: parlourhouse_dev
+-- ------------------------------------------------------
+-- Server version	8.0.17
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `alertmasterconfiguration`
+--
+
+DROP TABLE IF EXISTS `alertmasterconfiguration`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `alertmasterconfiguration` (
+  `AlertID` int(11) NOT NULL AUTO_INCREMENT,
+  `TenantID` int(11) DEFAULT NULL,
+  `Content` text,
+  `Subject` varchar(100) DEFAULT NULL,
+  `IsActive` bit(1) DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `CreatedDate` datetime DEFAULT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `ModifiedDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`AlertID`),
+  KEY `FK_AlertMaster_CreatedBy_idx` (`CreatedBy`),
+  KEY `FK_Alert_ModifiedBy_idx` (`ModifiedBy`),
+  KEY `FK_AlertMaster_TenantID_idx` (`TenantID`),
+  CONSTRAINT `FK_AlertMaster_CreatedBy` FOREIGN KEY (`CreatedBy`) REFERENCES `usermaster` (`UserId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_AlertMaster_TenantID` FOREIGN KEY (`TenantID`) REFERENCES `tenantmaster` (`TenantID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_Alert_ModifiedBy` FOREIGN KEY (`ModifiedBy`) REFERENCES `usermaster` (`UserId`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `alertmasterconfiguration`
+--
+
+LOCK TABLES `alertmasterconfiguration` WRITE;
+/*!40000 ALTER TABLE `alertmasterconfiguration` DISABLE KEYS */;
+INSERT INTO `alertmasterconfiguration` (`AlertID`, `TenantID`, `Content`, `Subject`, `IsActive`, `CreatedBy`, `CreatedDate`, `ModifiedBy`, `ModifiedDate`) VALUES (1,1,'<p>Dear Customer, </p><p>As you have request for changing the passwod.</p> Click on the URL to change the password. @CustomerURL','Forgot Password',_binary '',1,'2020-06-23 16:24:16',NULL,NULL);
+/*!40000 ALTER TABLE `alertmasterconfiguration` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `citymaster`
+--
+
+DROP TABLE IF EXISTS `citymaster`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `citymaster` (
+  `CItyId` int(11) NOT NULL AUTO_INCREMENT,
+  `StateId` int(11) DEFAULT NULL,
+  `CityName` varchar(30) DEFAULT NULL,
+  `CityCode` int(11) DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `CreatedDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`CItyId`),
+  KEY `FK_CityStateID_idx` (`StateId`),
+  KEY `FK_CityCreatedBy_idx` (`CreatedBy`),
+  CONSTRAINT `FK_CityCreatedBy` FOREIGN KEY (`CreatedBy`) REFERENCES `usermaster` (`UserId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_CityStateID` FOREIGN KEY (`StateId`) REFERENCES `statemaster` (`StateId`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `citymaster`
+--
+
+LOCK TABLES `citymaster` WRITE;
+/*!40000 ALTER TABLE `citymaster` DISABLE KEYS */;
+INSERT INTO `citymaster` (`CItyId`, `StateId`, `CityName`, `CityCode`, `CreatedBy`, `CreatedDate`) VALUES (1,1,'Ahmedabad',1,1,'2020-06-13 16:58:57');
+/*!40000 ALTER TABLE `citymaster` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `countrymaster`
+--
+
+DROP TABLE IF EXISTS `countrymaster`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `countrymaster` (
+  `CountryId` int(11) NOT NULL AUTO_INCREMENT,
+  `CountryName` varchar(30) DEFAULT NULL,
+  `CountryCode` int(11) DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `CreatedDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`CountryId`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `countrymaster`
+--
+
+LOCK TABLES `countrymaster` WRITE;
+/*!40000 ALTER TABLE `countrymaster` DISABLE KEYS */;
+INSERT INTO `countrymaster` (`CountryId`, `CountryName`, `CountryCode`, `CreatedBy`, `CreatedDate`) VALUES (1,'India',1,1,'2020-06-13 16:56:29');
+/*!40000 ALTER TABLE `countrymaster` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `creditmaster`
+--
+
+DROP TABLE IF EXISTS `creditmaster`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `creditmaster` (
+  `CreditID` int(11) NOT NULL AUTO_INCREMENT,
+  `TenantID` int(11) DEFAULT NULL,
+  `CustomerID` int(11) DEFAULT NULL,
+  `CreditAmount` decimal(10,2) DEFAULT NULL,
+  `Description` varchar(200) DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `CreatedDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`CreditID`),
+  KEY `FK_Credit_TenantID_idx` (`TenantID`),
+  KEY `FK_Credit_CustomerID_idx` (`CustomerID`),
+  KEY `Fk_Credit_CreatedBy_idx` (`CreatedBy`),
+  CONSTRAINT `FK_Credit_CustomerID` FOREIGN KEY (`CustomerID`) REFERENCES `customermaster` (`CustomerMasterID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_Credit_TenantID` FOREIGN KEY (`TenantID`) REFERENCES `tenantmaster` (`TenantID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `Fk_Credit_CreatedBy` FOREIGN KEY (`CreatedBy`) REFERENCES `usermaster` (`UserId`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `creditmaster`
+--
+
+LOCK TABLES `creditmaster` WRITE;
+/*!40000 ALTER TABLE `creditmaster` DISABLE KEYS */;
+INSERT INTO `creditmaster` (`CreditID`, `TenantID`, `CustomerID`, `CreditAmount`, `Description`, `CreatedBy`, `CreatedDate`) VALUES (1,1,1,455.00,'Chips and cold drinks',1,'2020-06-29 00:07:57'),(2,1,1,35.00,'Chips and cold drinks',1,'2020-06-29 00:10:19'),(3,1,2,45.00,'Milk and butter milk',1,'2020-06-29 00:25:42'),(4,1,2,15.00,'butter milk',1,'2020-06-29 00:27:57'),(5,1,2,15.00,'butter milk',1,'2020-06-29 00:29:45'),(6,1,2,56.00,'cold drinks',1,'2020-06-29 00:32:24'),(7,1,12,120.00,'Nasta',1,'2020-06-29 00:34:40'),(8,1,1,15.00,'Nasta',1,'2020-06-29 00:46:37'),(9,1,1,350.00,'',1,'2020-07-05 12:43:31'),(10,1,18,10.00,'',1,'2020-07-05 12:51:28'),(11,1,18,5.00,'',1,'2020-07-05 12:52:53'),(12,1,18,40.00,'',1,'2020-07-05 16:59:54'),(13,1,13,40.00,'',1,'2020-07-05 17:00:44'),(14,1,13,150.00,'one month',1,'2020-07-05 22:59:07');
+/*!40000 ALTER TABLE `creditmaster` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `currentsession`
+--
+
+DROP TABLE IF EXISTS `currentsession`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `currentsession` (
+  `IndexID` int(11) NOT NULL AUTO_INCREMENT,
+  `SessionID` int(11) DEFAULT NULL,
+  `UserID` int(11) DEFAULT NULL,
+  `SecurityToken` varchar(500) DEFAULT NULL,
+  `IsActive` bit(1) DEFAULT NULL,
+  `AppID` varchar(10) DEFAULT NULL,
+  `ExpiryDate` datetime DEFAULT NULL,
+  `CreatedDate` datetime DEFAULT NULL,
+  `TenantID` int(11) DEFAULT NULL,
+  `LogOutOn` datetime DEFAULT NULL,
+  PRIMARY KEY (`IndexID`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `currentsession`
+--
+
+LOCK TABLES `currentsession` WRITE;
+/*!40000 ALTER TABLE `currentsession` DISABLE KEYS */;
+INSERT INTO `currentsession` (`IndexID`, `SessionID`, `UserID`, `SecurityToken`, `IsActive`, `AppID`, `ExpiryDate`, `CreatedDate`, `TenantID`, `LogOutOn`) VALUES (1,NULL,1,'30d+lgYQof34/6hJIgyzuso71EVwLT9jKVaQzNPRBhPMXdLP9z85wTeMnZtuNUPtkxwqLbXMnEUTFZzXvzY1oag4yTZ6EroJ+XikWyABV/M=.e2v4iqQP2Ej8SelJ72dcR4UjcfBVlCf2',_binary '\0','PanHouse','2020-06-13 21:50:11','2020-06-13 19:50:11',1,NULL),(2,NULL,1,'30d+lgYQof34/6hJIgyzuso71EVwLT9jKVaQzNPRBhPMXdLP9z85wTeMnZtuNUPtkxwqLbXMnEUTFZzXvzY1oag4yTZ6EroJ+XikWyABV/M=.1TV2MKYP2Ei4S5wEFl7ESbfGsD1qUlS4',_binary '\0','PanHouse','2020-06-13 21:59:32','2020-06-13 19:59:32',1,NULL),(3,NULL,1,'30d+lgYQof34/6hJIgyzuso71EVwLT9jKVaQzNPRBhPMXdLP9z85wTeMnZtuNUPtkxwqLbXMnEUTFZzXvzY1oag4yTZ6EroJ+XikWyABV/M=.JxySSqYP2Eg9vF8bPJ3UR4GcuHd9hEtI',_binary '\0','PanHouse','2020-06-13 22:00:16','2020-06-13 20:00:16',1,NULL),(4,NULL,1,'30d+lgYQof34/6hJIgyzuso71EVwLT9jKVaQzNPRBhPMXdLP9z85wTeMnZtuNUPtkxwqLbXMnEUTFZzXvzY1oag4yTZ6EroJ+XikWyABV/M=.PtiXV6YP2EiEV9U9KOhSRacf37EvGHFR',_binary '\0','PanHouse','2020-06-13 22:00:39','2020-06-13 20:00:39',1,NULL),(5,NULL,1,'30d+lgYQof34/6hJIgyzuso71EVwLT9jKVaQzNPRBhPMXdLP9z85wTeMnZtuNUPtkxwqLbXMnEUTFZzXvzY1oag4yTZ6EroJ+XikWyABV/M=.DfOrzKYP2EjwLUepnXLAQLkYZ6L837MH',_binary '\0','PanHouse','2020-06-13 22:03:54','2020-06-13 20:03:54',1,NULL),(6,NULL,1,'30d+lgYQof34/6hJIgyzuso71EVwLT9jKVaQzNPRBhPMXdLP9z85wTeMnZtuNUPtkxwqLbXMnEUTFZzXvzY1oag4yTZ6EroJ+XikWyABV/M=.tzcO1aYP2EgSoO8yyVJbT7DjNj2k+k0n',_binary '\0','PanHouse','2020-06-13 22:04:08','2020-06-13 20:04:08',1,NULL),(7,NULL,1,'30d+lgYQof34/6hJIgyzuso71EVwLT9jKVaQzNPRBhPMXdLP9z85wTeMnZtuNUPtkxwqLbXMnEUTFZzXvzY1oag4yTZ6EroJ+XikWyABV/M=.h5iKDKcP2Ei6VCQDD/p4TpoYmOZlaYXV',_binary '\0','PanHouse','2020-06-13 22:05:41','2020-06-13 20:05:41',1,NULL),(8,NULL,1,'30d+lgYQof34/6hJIgyzuso71EVwLT9jKVaQzNPRBhPMXdLP9z85wTeMnZtuNUPtkxwqLbXMnEUTFZzXvzY1oag4yTZ6EroJ+XikWyABV/M=.MxYQqacP2Ej3RCh4gx/hTK2OkWfNAZ90',_binary '\0','PanHouse','2020-06-13 22:10:04','2020-06-13 20:10:04',1,'2020-06-13 20:51:21'),(9,NULL,1,'30d+lgYQof34/6hJIgyzuso71EVwLT9jKVaQzNPRBhPMXdLP9z85wTeMnZtuNUPtkxwqLbXMnEUTFZzXvzY1oag4yTZ6EroJ+XikWyABV/M=.yT7iuK0P2EgjVVgi+ACAQqVKAn/wF91O',_binary '\0','PanHouse','2020-06-13 22:53:27','2020-06-13 20:53:27',1,'2020-06-13 20:53:32'),(10,NULL,1,'30d+lgYQof34/6hJIgyzuso71EVwLT9jKVaQzNPRBhPMXdLP9z85wTeMnZtuNUPtkxwqLbXMnEUTFZzXvzY1oag4yTZ6EroJ+XikWyABV/M=.FDs0xq0P2EhMVcJEf7NpR7O96hxiYI1u',_binary '\0','PanHouse','2020-06-13 22:53:50','2020-06-13 20:53:50',1,NULL),(11,NULL,1,'30d+lgYQof34/6hJIgyzuso71EVwLT9jKVaQzNPRBhPMXdLP9z85wTeMnZtuNUPtkxwqLbXMnEUTFZzXvzY1oag4yTZ6EroJ+XikWyABV/M=.VaP75bAP2EjNWAWdyvQzTrF9q4Wo2Hf2',_binary '\0','PanHouse','2020-06-13 23:16:12','2020-06-13 21:16:12',1,NULL),(12,NULL,1,'30d+lgYQof34/6hJIgyzuso71EVwLT9jKVaQzNPRBhPMXdLP9z85wTeMnZtuNUPtkxwqLbXMnEUTFZzXvzY1oag4yTZ6EroJ+XikWyABV/M=.IyJ81doW2EgwchGIBXp6QZz6hRfeVPsL',_binary '','PanHouse','2020-06-23 02:04:09','2020-06-23 00:04:09',1,NULL);
+/*!40000 ALTER TABLE `currentsession` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `customermaster`
+--
+
+DROP TABLE IF EXISTS `customermaster`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `customermaster` (
+  `CustomerMasterID` int(11) NOT NULL AUTO_INCREMENT,
+  `TenantID` int(11) DEFAULT NULL,
+  `CustomerName` varchar(100) DEFAULT NULL,
+  `CustomerEmailID` varchar(100) DEFAULT NULL,
+  `Gender` varchar(6) DEFAULT NULL,
+  `MobileNo` varchar(10) DEFAULT NULL,
+  `Address` varchar(100) DEFAULT NULL,
+  `IsActive` bit(1) DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `CreatedDate` datetime DEFAULT NULL,
+  `ModifyBy` int(11) DEFAULT NULL,
+  `ModifiedDate` datetime DEFAULT NULL,
+  `PaymentModeID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`CustomerMasterID`),
+  KEY `FK_Customer_PaymentID_idx` (`PaymentModeID`),
+  KEY `FK_Customer_CreatedBy_idx` (`CreatedBy`),
+  KEY `FK_Customer_ModifiedBy_idx` (`ModifyBy`),
+  KEY `FK_Customer_TenantID_idx` (`TenantID`),
+  CONSTRAINT `FK_Customer_CreatedBy` FOREIGN KEY (`CreatedBy`) REFERENCES `usermaster` (`UserId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_Customer_ModifiedBy` FOREIGN KEY (`ModifyBy`) REFERENCES `usermaster` (`UserId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_Customer_PaymentID` FOREIGN KEY (`PaymentModeID`) REFERENCES `paymentmodemaster` (`PaymentModeID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_Customer_TenantID` FOREIGN KEY (`TenantID`) REFERENCES `tenantmaster` (`TenantID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='									';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customermaster`
+--
+
+LOCK TABLES `customermaster` WRITE;
+/*!40000 ALTER TABLE `customermaster` DISABLE KEYS */;
+INSERT INTO `customermaster` (`CustomerMasterID`, `TenantID`, `CustomerName`, `CustomerEmailID`, `Gender`, `MobileNo`, `Address`, `IsActive`, `CreatedBy`, `CreatedDate`, `ModifyBy`, `ModifiedDate`, `PaymentModeID`) VALUES (1,1,'Shlok Barot','shlokbarot003@gmail.com','Male','9601001910','Manipur Green, Ahmedabad',_binary '',1,'2020-06-26 16:13:04',1,'2020-07-05 17:08:46',NULL),(2,1,'Bharat Barot','bharatbarot@gmail.com','Male','9725138333','Manipur Green,Ahmedabad',_binary '',1,'2020-06-26 16:50:13',1,'2020-07-05 17:08:34',NULL),(12,1,'Mayur Patel','mayurpatel@gmail.com','Male','9427326547','Manipur green, Ahmedabad',_binary '',1,'2020-06-28 12:46:28',1,'2020-07-05 22:56:01',NULL),(13,1,'Parth Barot','parthbarot@gmail.com','Male','8238170218','Ganesh society, Patan',_binary '',1,'2020-06-28 12:51:55',1,'2020-07-05 22:55:04',NULL),(17,1,'Vijay Ramani','vijayramani@gmail.com','Male','9897767676','New Apartment, Surat',_binary '\0',1,'2020-06-28 13:16:44',1,'2020-06-28 16:31:45',NULL),(18,1,'Devesh Madmashali','devesh.padmashali@brainvire.com','Male','8976476073','New apartment,  Mumbai',_binary '',1,'2020-07-05 12:45:27',1,'2020-07-05 17:08:18',NULL);
+/*!40000 ALTER TABLE `customermaster` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `customerreport`
+--
+
+DROP TABLE IF EXISTS `customerreport`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `customerreport` (
+  `CustomerReportID` int(11) NOT NULL AUTO_INCREMENT,
+  `TenantID` int(11) DEFAULT NULL,
+  `CustomerID` int(11) DEFAULT NULL,
+  `CreditID` int(11) DEFAULT NULL,
+  `DebitID` int(11) DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `CreatedDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`CustomerReportID`),
+  KEY `FK_CustReport_TenantID_idx` (`TenantID`),
+  KEY `FK_CustReport_CustomerID_idx` (`CustomerID`),
+  KEY `FK_CustReport_CreditID_idx` (`CreditID`),
+  KEY `FK_CustReport_DebitID_idx` (`DebitID`),
+  KEY `FK_CustReport_CreatedBy_idx` (`CreatedBy`),
+  CONSTRAINT `FK_CustReport_CreatedBy` FOREIGN KEY (`CreatedBy`) REFERENCES `usermaster` (`UserId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_CustReport_CreditID` FOREIGN KEY (`CreditID`) REFERENCES `creditmaster` (`CreditID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_CustReport_CustomerID` FOREIGN KEY (`CustomerID`) REFERENCES `customermaster` (`CustomerMasterID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_CustReport_DebitID` FOREIGN KEY (`DebitID`) REFERENCES `debitmaster` (`DebitID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_CustReport_TenantID` FOREIGN KEY (`TenantID`) REFERENCES `tenantmaster` (`TenantID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customerreport`
+--
+
+LOCK TABLES `customerreport` WRITE;
+/*!40000 ALTER TABLE `customerreport` DISABLE KEYS */;
+/*!40000 ALTER TABLE `customerreport` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `debitmaster`
+--
+
+DROP TABLE IF EXISTS `debitmaster`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `debitmaster` (
+  `DebitID` int(11) NOT NULL AUTO_INCREMENT,
+  `TenantID` int(11) DEFAULT NULL,
+  `CustomerID` int(11) DEFAULT NULL,
+  `DebitAmount` decimal(10,2) DEFAULT NULL,
+  `Description` varchar(200) DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `CreatedDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`DebitID`),
+  KEY `FK_Debit_TenantID_idx` (`TenantID`),
+  KEY `Fk_Debit_CustomerID_idx` (`CustomerID`),
+  KEY `FK_Debit_CreatedBy_idx` (`CreatedBy`),
+  CONSTRAINT `FK_Debit_CreatedBy` FOREIGN KEY (`CreatedBy`) REFERENCES `usermaster` (`UserId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_Debit_TenantID` FOREIGN KEY (`TenantID`) REFERENCES `tenantmaster` (`TenantID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `Fk_Debit_CustomerID` FOREIGN KEY (`CustomerID`) REFERENCES `customermaster` (`CustomerMasterID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `debitmaster`
+--
+
+LOCK TABLES `debitmaster` WRITE;
+/*!40000 ALTER TABLE `debitmaster` DISABLE KEYS */;
+INSERT INTO `debitmaster` (`DebitID`, `TenantID`, `CustomerID`, `DebitAmount`, `Description`, `CreatedBy`, `CreatedDate`) VALUES (1,1,1,125.00,'Cold drinks and milks',1,'2020-06-29 00:44:25'),(2,1,1,155.00,'Nasta',1,'2020-06-29 00:47:47'),(3,1,2,65.00,'Milk and butter',1,'2020-06-29 00:50:47'),(5,1,12,75.00,'Cold drinks and chips',1,'2020-06-29 00:51:37'),(6,1,12,35.00,'milk, butter',1,'2020-06-29 01:04:33'),(7,1,1,65.00,'Butter milk',1,'2020-07-05 12:42:08'),(8,1,18,35.00,'Chips and water',1,'2020-07-05 12:46:08'),(9,1,18,15.00,'nasta',1,'2020-07-05 12:50:10'),(10,1,13,25.00,'Chips',1,'2020-07-05 15:54:50'),(11,1,18,10.00,'water',1,'2020-07-05 16:03:16'),(12,1,13,45.00,'Nasta',1,'2020-07-05 17:01:20'),(13,1,2,12.00,'Butter milk',1,'2020-07-05 22:50:51'),(14,1,2,450.00,'Body spray',1,'2020-07-05 22:51:21'),(15,1,13,355.00,'Body spray',1,'2020-07-05 22:54:01'),(16,1,13,28.00,'Milk',1,'2020-07-05 22:54:17'),(17,1,12,28.00,'Milk',1,'2020-07-05 22:56:20'),(18,1,12,15.00,'chocolate',1,'2020-07-08 17:06:11');
+/*!40000 ALTER TABLE `debitmaster` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `food_colddrinks`
+--
+
+DROP TABLE IF EXISTS `food_colddrinks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `food_colddrinks` (
+  `Food_ColdDrinksID` int(11) NOT NULL AUTO_INCREMENT,
+  `FoodName` varchar(50) DEFAULT NULL,
+  `FoodType` varchar(20) DEFAULT NULL,
+  `IsActive` bit(11) DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `CreatedDate` datetime DEFAULT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `ModifiedDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`Food_ColdDrinksID`),
+  KEY `FK_Food_CreatedBy_idx` (`CreatedBy`),
+  KEY `FK_Food_ModifiedBy_idx` (`ModifiedBy`),
+  CONSTRAINT `FK_Food_CreatedBy` FOREIGN KEY (`CreatedBy`) REFERENCES `usermaster` (`UserId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_Food_ModifiedBy` FOREIGN KEY (`ModifiedBy`) REFERENCES `usermaster` (`UserId`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `food_colddrinks`
+--
+
+LOCK TABLES `food_colddrinks` WRITE;
+/*!40000 ALTER TABLE `food_colddrinks` DISABLE KEYS */;
+/*!40000 ALTER TABLE `food_colddrinks` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `gutkadetails`
+--
+
+DROP TABLE IF EXISTS `gutkadetails`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `gutkadetails` (
+  `GutkaDetailsID` int(11) NOT NULL AUTO_INCREMENT,
+  `FoodID` int(11) DEFAULT NULL,
+  `Cigarette` bit(1) DEFAULT NULL,
+  `Padiki` bit(1) DEFAULT NULL,
+  `Masalo` bit(1) DEFAULT NULL,
+  `IsActive` bit(1) DEFAULT NULL,
+  `CustomerID` int(11) DEFAULT NULL,
+  `StoreID` int(11) DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `CreatedDate` datetime DEFAULT NULL,
+  `ModifiedDate` datetime DEFAULT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  PRIMARY KEY (`GutkaDetailsID`),
+  KEY `FK_Gutka_CreatedBy_idx` (`CreatedBy`),
+  KEY `FK_Gutka_ModifiedBy_idx` (`ModifiedBy`),
+  KEY `Fk_Gutka_StoreID_idx` (`StoreID`),
+  KEY `FK_Gutka_CustomerID_idx` (`CustomerID`),
+  KEY `FK_Gutka_FoodID_idx` (`FoodID`),
+  CONSTRAINT `FK_Gutka_CreatedBy` FOREIGN KEY (`CreatedBy`) REFERENCES `usermaster` (`UserId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_Gutka_CustomerID` FOREIGN KEY (`CustomerID`) REFERENCES `customermaster` (`CustomerMasterID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_Gutka_FoodID` FOREIGN KEY (`FoodID`) REFERENCES `food_colddrinks` (`Food_ColdDrinksID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_Gutka_ModifiedBy` FOREIGN KEY (`ModifiedBy`) REFERENCES `usermaster` (`UserId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `Fk_Gutka_StoreID` FOREIGN KEY (`StoreID`) REFERENCES `storemaster` (`StoreMasterID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `gutkadetails`
+--
+
+LOCK TABLES `gutkadetails` WRITE;
+/*!40000 ALTER TABLE `gutkadetails` DISABLE KEYS */;
+/*!40000 ALTER TABLE `gutkadetails` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `paymentmodemaster`
+--
+
+DROP TABLE IF EXISTS `paymentmodemaster`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `paymentmodemaster` (
+  `PaymentModeID` int(11) NOT NULL AUTO_INCREMENT,
+  `PaymentModeName` varchar(25) DEFAULT NULL,
+  `IsOnline` bit(1) DEFAULT NULL,
+  `IsActive` bit(1) DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `CreatedDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`PaymentModeID`),
+  KEY `FK_Payment_CreatedBy_idx` (`CreatedBy`),
+  CONSTRAINT `FK_Payment_CreatedBy` FOREIGN KEY (`CreatedBy`) REFERENCES `usermaster` (`UserId`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `paymentmodemaster`
+--
+
+LOCK TABLES `paymentmodemaster` WRITE;
+/*!40000 ALTER TABLE `paymentmodemaster` DISABLE KEYS */;
+/*!40000 ALTER TABLE `paymentmodemaster` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `statemaster`
+--
+
+DROP TABLE IF EXISTS `statemaster`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `statemaster` (
+  `StateId` int(11) NOT NULL AUTO_INCREMENT,
+  `CountryId` int(11) DEFAULT NULL,
+  `StateName` varchar(30) DEFAULT NULL,
+  `StateCode` int(11) DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `CreatedDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`StateId`),
+  KEY `FK_StateCountryID_idx` (`CountryId`),
+  KEY `FK_StateCreatedBy_idx` (`CreatedBy`),
+  CONSTRAINT `FK_StateCountryID` FOREIGN KEY (`CountryId`) REFERENCES `countrymaster` (`CountryId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_StateCreatedBy` FOREIGN KEY (`CreatedBy`) REFERENCES `usermaster` (`UserId`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `statemaster`
+--
+
+LOCK TABLES `statemaster` WRITE;
+/*!40000 ALTER TABLE `statemaster` DISABLE KEYS */;
+INSERT INTO `statemaster` (`StateId`, `CountryId`, `StateName`, `StateCode`, `CreatedBy`, `CreatedDate`) VALUES (1,1,'Gujarat',1,1,'2020-06-13 16:58:11');
+/*!40000 ALTER TABLE `statemaster` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `storemaster`
+--
+
+DROP TABLE IF EXISTS `storemaster`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `storemaster` (
+  `StoreMasterID` int(11) NOT NULL AUTO_INCREMENT,
+  `TenantID` int(11) DEFAULT NULL,
+  `StoreMasterName` varchar(100) DEFAULT NULL,
+  `StoreCode` int(11) DEFAULT NULL,
+  `StoreUsername` varchar(100) DEFAULT NULL,
+  `StoreuserMobileno` varchar(15) DEFAULT NULL,
+  `StoreAddress` varchar(150) DEFAULT NULL,
+  `CityID` int(11) DEFAULT NULL,
+  `StateID` int(11) DEFAULT NULL,
+  `CountryID` int(11) DEFAULT NULL,
+  `IsActive` bit(1) DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `CreatedDate` datetime DEFAULT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `ModifiedDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`StoreMasterID`),
+  KEY `FK_Store_CityID_idx` (`CityID`),
+  KEY `FK_Store_StateID_idx` (`StateID`),
+  KEY `FK_Store_CountryID_idx` (`CountryID`),
+  KEY `FK_Store_CreatedBy_idx` (`CreatedBy`),
+  KEY `FK_Store_ModifiedBy_idx` (`ModifiedBy`),
+  KEY `FK_Store_TenantID_idx` (`TenantID`),
+  CONSTRAINT `FK_Store_CityID` FOREIGN KEY (`CityID`) REFERENCES `citymaster` (`CItyId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_Store_CountryID` FOREIGN KEY (`CountryID`) REFERENCES `countrymaster` (`CountryId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_Store_CreatedBy` FOREIGN KEY (`CreatedBy`) REFERENCES `usermaster` (`UserId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_Store_ModifiedBy` FOREIGN KEY (`ModifiedBy`) REFERENCES `usermaster` (`UserId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_Store_StateID` FOREIGN KEY (`StateID`) REFERENCES `statemaster` (`StateId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_Store_TenantID` FOREIGN KEY (`TenantID`) REFERENCES `tenantmaster` (`TenantID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `storemaster`
+--
+
+LOCK TABLES `storemaster` WRITE;
+/*!40000 ALTER TABLE `storemaster` DISABLE KEYS */;
+/*!40000 ALTER TABLE `storemaster` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tenantemaismsconfig`
+--
+
+DROP TABLE IF EXISTS `tenantemaismsconfig`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tenantemaismsconfig` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `TenantID` int(11) DEFAULT NULL,
+  `EmailSenderID` varchar(100) DEFAULT NULL,
+  `EmailSenderName` varchar(100) DEFAULT NULL,
+  `SMTPPort` varchar(10) DEFAULT NULL,
+  `SMTPHost` varchar(50) DEFAULT NULL,
+  `EmailUserID` varchar(100) DEFAULT NULL,
+  `EmailPassword` varchar(50) DEFAULT NULL,
+  `EnabledSSL` bit(1) DEFAULT NULL,
+  `IsBodyHtml` bit(1) DEFAULT NULL,
+  `SMSSenderID` varchar(100) DEFAULT NULL,
+  `SMSAuthToken` varchar(50) DEFAULT NULL,
+  `IsActive` bit(1) DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `CreatedDate` datetime DEFAULT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `ModifiedDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_TenEmailSMSCon_CreatedBy_idx` (`CreatedBy`),
+  KEY `FK_TenEmailSMSCon_ModifiedBy_idx` (`ModifiedBy`),
+  KEY `Fk_TenEmailSMSCon_TenantID_idx` (`TenantID`),
+  CONSTRAINT `FK_TenEmailSMSCon_CreatedBy` FOREIGN KEY (`CreatedBy`) REFERENCES `usermaster` (`UserId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_TenEmailSMSCon_ModifiedBy` FOREIGN KEY (`ModifiedBy`) REFERENCES `usermaster` (`UserId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `Fk_TenEmailSMSCon_TenantID` FOREIGN KEY (`TenantID`) REFERENCES `tenantmaster` (`TenantID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tenantemaismsconfig`
+--
+
+LOCK TABLES `tenantemaismsconfig` WRITE;
+/*!40000 ALTER TABLE `tenantemaismsconfig` DISABLE KEYS */;
+INSERT INTO `tenantemaismsconfig` (`ID`, `TenantID`, `EmailSenderID`, `EmailSenderName`, `SMTPPort`, `SMTPHost`, `EmailUserID`, `EmailPassword`, `EnabledSSL`, `IsBodyHtml`, `SMSSenderID`, `SMSAuthToken`, `IsActive`, `CreatedBy`, `CreatedDate`, `ModifiedBy`, `ModifiedDate`) VALUES (1,1,'braintestermail@gmail.com','Pan House','587','smtp.gmail.com','shlok.development2020@gmail.com','Shlok.Dev@2020',_binary '',_binary '','2',NULL,NULL,NULL,'2020-06-22 20:07:31',NULL,NULL);
+/*!40000 ALTER TABLE `tenantemaismsconfig` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tenantmaster`
+--
+
+DROP TABLE IF EXISTS `tenantmaster`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tenantmaster` (
+  `TenantID` int(11) NOT NULL AUTO_INCREMENT,
+  `CompanyName` varchar(150) DEFAULT NULL,
+  `EmailID` varchar(100) DEFAULT NULL,
+  `ContactNo` varchar(10) DEFAULT NULL,
+  `ContactPersonName` varchar(100) DEFAULT NULL,
+  `Address` varchar(200) DEFAULT NULL,
+  `CityID` int(11) DEFAULT NULL,
+  `StateID` int(11) DEFAULT NULL,
+  `CountryID` int(11) DEFAULT NULL,
+  `DomainLink` varchar(150) DEFAULT NULL,
+  `AppID` varchar(10) DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `CreatedDate` datetime DEFAULT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `ModifiedDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`TenantID`),
+  KEY `FK_TetantMaster_CityID_idx` (`CityID`),
+  KEY `FK_TenantMaster_StateID_idx` (`StateID`),
+  KEY `FK_TenantMaster_CountryID_idx` (`CountryID`),
+  KEY `FK_TenantMaster_CreatedBy_idx` (`CreatedBy`),
+  KEY `FK_TenantMaster_ModifiedBy_idx` (`ModifiedBy`),
+  CONSTRAINT `FK_TenantMaster_CityID` FOREIGN KEY (`CityID`) REFERENCES `citymaster` (`CItyId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_TenantMaster_CountryID` FOREIGN KEY (`CountryID`) REFERENCES `countrymaster` (`CountryId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_TenantMaster_CreatedBy` FOREIGN KEY (`CreatedBy`) REFERENCES `usermaster` (`UserId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_TenantMaster_ModifiedBy` FOREIGN KEY (`ModifiedBy`) REFERENCES `usermaster` (`UserId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_TenantMaster_StateID` FOREIGN KEY (`StateID`) REFERENCES `statemaster` (`StateId`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tenantmaster`
+--
+
+LOCK TABLES `tenantmaster` WRITE;
+/*!40000 ALTER TABLE `tenantmaster` DISABLE KEYS */;
+INSERT INTO `tenantmaster` (`TenantID`, `CompanyName`, `EmailID`, `ContactNo`, `ContactPersonName`, `Address`, `CityID`, `StateID`, `CountryID`, `DomainLink`, `AppID`, `CreatedBy`, `CreatedDate`, `ModifiedBy`, `ModifiedDate`) VALUES (1,'Chamunda Pan Parlour','shlokbarot003@gmail.com','9601001019','Shlok Barot','Manipur, Ahmedabad',1,1,1,'http://localhost:3000','PanHouse',1,'2020-06-13 17:04:27',NULL,NULL);
+/*!40000 ALTER TABLE `tenantmaster` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usermaster`
+--
+
+DROP TABLE IF EXISTS `usermaster`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usermaster` (
+  `UserId` int(11) NOT NULL AUTO_INCREMENT,
+  `TenantID` int(11) DEFAULT NULL,
+  `Username` varchar(50) DEFAULT NULL,
+  `EmailId` varchar(100) DEFAULT NULL,
+  `SecurePassword` varchar(255) DEFAULT NULL,
+  `Firstname` varchar(50) DEFAULT NULL,
+  `Lastname` varchar(50) DEFAULT NULL,
+  `Address` varchar(100) DEFAULT NULL,
+  `Mobileno` varchar(15) DEFAULT NULL,
+  `IsActive` bit(1) DEFAULT NULL,
+  `ProfilePicture` varchar(100) DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `CreatedDate` datetime DEFAULT NULL,
+  `ModifiedDate` datetime DEFAULT NULL,
+  `isdeleted` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`UserId`),
+  KEY `FK_UserMasrerCreatedBy_idx` (`CreatedBy`),
+  KEY `FK_Usermaster_TenantID_idx` (`TenantID`),
+  CONSTRAINT `FK_UserMasrerCreatedBy` FOREIGN KEY (`CreatedBy`) REFERENCES `usermaster` (`UserId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_Usermaster_TenantID` FOREIGN KEY (`TenantID`) REFERENCES `tenantmaster` (`TenantID`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usermaster`
+--
+
+LOCK TABLES `usermaster` WRITE;
+/*!40000 ALTER TABLE `usermaster` DISABLE KEYS */;
+INSERT INTO `usermaster` (`UserId`, `TenantID`, `Username`, `EmailId`, `SecurePassword`, `Firstname`, `Lastname`, `Address`, `Mobileno`, `IsActive`, `ProfilePicture`, `CreatedBy`, `CreatedDate`, `ModifiedDate`, `isdeleted`) VALUES (1,1,'shlokbarot003@gmail.com','shlokbarot003@gmail.com','03mQ4bxxco1EDNh+jt/uIg==','Shlok','Barot','202,Manipur Green, Ahmedabad','9601001910',_binary '','1 (97) - Copy1172920200313473.jpg',1,'2020-06-13 16:54:31','2020-07-21 14:36:13',NULL);
+/*!40000 ALTER TABLE `usermaster` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping events for database 'parlourhouse_dev'
+--
+
+--
+-- Dumping routines for database 'parlourhouse_dev'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `SP_CreateCreditData` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_CreateCreditData`(
+	TenantID int(11),
+    CustomerID int(11),
+    CreditAmount decimal(10,2),
+    Credit_Description varbinary(200),
+    CreatedBy int(11)
+)
+BEGIN
+	DECLARE	 _CreditID int;
+    
+    INSERT INTO creditmaster(TenantID,CustomerID,CreditAmount,Description,CreatedBy,CreatedDate)
+    VALUES(TenantID,CustomerID,CreditAmount,Credit_Description,CreatedBy,current_timestamp());
+    
+    SELECT 	LAST_INSERT_ID() AS CreditID;
+    set _CreditID=LAST_INSERT_ID();
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_createCurrentSession` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_createCurrentSession`(
+	UserMaster_ID INt,
+    Security_Token nvarchar(500),
+    App_Id nvarchar(10),
+    Tenant_Id INT
+)
+BEGIN
+
+declare lastinsertid int;
+IF UserMaster_ID > 0 THEN
+	
+    UPDATE currentsession SET IsActive = 0 where UserID = UserMaster_ID;
+    
+    Insert into currentsession(UserID,SecurityToken,IsActive,AppID,ExpiryDate,CreatedDate,TenantID)
+    values (UserMaster_ID,Security_Token,1,App_Id,date_add(now(), interval 2 Hour),current_timestamp,Tenant_Id);
+    
+END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_CreateCustomer` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_CreateCustomer`(
+TenantID int,
+CustomerName varchar(100),
+customerPhoneNumber varchar(10),
+customerEmailId varchar(100),
+Gender varchar(6),
+CustomerAddress varchar(100),
+CreatedBy int(11)
+)
+BEGIN
+
+DECLARE	 _CustomerID int;
+
+	INSERT INTO customermaster(TenantID,CustomerName,CustomerEmailID,Gender,MobileNo,Address,IsActive,CreatedBy,CreatedDate)
+				VALUES(TenantID,CustomerName,customerEmailId,Gender,customerPhoneNumber,CustomerAddress,1,CreatedBy,current_timestamp());
+
+	SELECT 	LAST_INSERT_ID() AS CustomerMasterID;
+    set _CustomerID=LAST_INSERT_ID();
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_CreateDebitData` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_CreateDebitData`(
+	TenantID int(11),
+    CustomerID int(11),
+    DebitAmount decimal(10,2),
+    Debit_Description varchar(200),
+    CreatedBy int(11)
+)
+BEGIN
+	DECLARE	 _DebitID int;
+
+	INSERT INTO debitmaster(TenantID,CustomerID,DebitAmount,Description,CreatedBy,CreatedDate)
+    VALUES(TenantID,CustomerID,DebitAmount,Debit_Description,CreatedBy,current_timestamp());
+
+	SELECT 	LAST_INSERT_ID() AS DebitID;
+    set _DebitID=LAST_INSERT_ID();
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_CustomerShareMassanger` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_CustomerShareMassanger`(
+	Tenant_Id int(11),
+    Customer_Id int(11)
+)
+BEGIN
+
+Declare _CustomerMobileNo varchar(10);
+Declare _ContentScript text;
+Declare _customername varchar(100);
+Declare _TotalAmount decimal(10,2);
+Declare _PendingAmount decimal(10,2);
+Declare _OwnerName varchar(100);
+Declare _companyName varchar(100);
+
+ Select MobileNo,CustomerName into _CustomerMobileNo,_customername from customermaster where CustomermasterID = Customer_Id;
+ Select ContactPersonName,CompanyName into _OwnerName,_companyName from tenantmaster where TenantID=Tenant_Id;
+ 
+ Set _TotalAmount = (Select SUM(DebitAmount) as 'DebitAmount' from debitmaster where CustomerID=Customer_Id);
+ 
+ Set _PendingAmount = (Select
+	case when ((crm.CreditAmount) - (dbm.DebitAmount)) < 0 
+	Then (dbm.DebitAmount) - (crm.CreditAmount) 
+	Else
+	0 
+    End as 'PendingAmount' 
+	from customermaster cm
+	left join (select CustomerID, SUM(CreditAmount) as 'CreditAmount' from creditmaster where TenantID=Tenant_Id group by customerid ) 
+	crm on crm.customerid=cm.CustomerMasterID
+
+	left join (select CustomerID, SUM(DebitAmount) as 'DebitAmount' from debitmaster where TenantID=Tenant_Id group by customerid) 
+	dbm on dbm.customerid=cm.CustomerMasterID where cm.TenantId=Tenant_Id and cm.CustomerMasterID=Customer_Id and crm.CreditAmount is not null and dbm.DebitAmount is not null);
+ 
+ Set _ContentScript = (Select concat('Dear ', _customername, ',%0a%0a ', GROUP_CONCAT(concat(DATE_FORMAT(CreatedDate,"%d-%m-%Y"),' (₹ ',DebitAmount,') %0a',Description,' %0a%0a') SEPARATOR ' '),'%0a','*Total amount :-* ₹ ',_TotalAmount,'%0a','*Net amount :-* ₹ ',_PendingAmount,'%0a%0a','From','%0a',_OwnerName,'%0a',_companyName)from debitmaster where CustomerID=Customer_Id);
+    
+ select concat('api.whatsapp.com/send?phone=91',_CustomerMobileNo,'&text=',_ContentScript) as 'Message';
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_DeleteCustomer` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_DeleteCustomer`(
+	Customer_ID int(11),
+    Tenant_ID int (11)
+)
+BEGIN
+	
+    DECLARE TableRefRecordIssue CONDITION for 1451;
+    DECLARE EXIT HANDLER FOR TableRefRecordIssue
+    SELECT 0;
+    
+    DELETE FROM customermaster WHERE CustomerMasterID = Customer_ID AND TenantID = Tenant_ID;
+    SELECT 1;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_GetCityList` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_GetCityList`(
+	State_Id int(11)
+)
+BEGIN
+	Select StateId, CityId, CityName from citymaster where StateId = State_Id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_GetCustomerCreditDebitList` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_GetCustomerCreditDebitList`(
+	Tenant_Id int(11)
+)
+BEGIN
+	Select cm.CustomerMasterID, cm.CustomerName,crm.CreditAmount,dbm.DebitAmount,
+
+	case when ((Crm.CreditAmount) - (dbm.DebitAmount)) < 0 
+	Then 0
+	Else
+	(crm.CreditAmount) - (dbm.DebitAmount) 
+    End as 'ExtraCredited', 
+
+	case when ((crm.CreditAmount) - (dbm.DebitAmount)) < 0 
+	Then (dbm.DebitAmount) - (crm.CreditAmount) 
+	Else
+	0 
+    End as 'NeedToPay' 
+
+	from customermaster cm
+ 
+	left join (select CustomerID, SUM(CreditAmount) as 'CreditAmount' from creditmaster where TenantID=Tenant_Id group by customerid ) 
+	crm on crm.customerid=cm.CustomerMasterID
+
+	left join (select CustomerID, SUM(DebitAmount) as 'DebitAmount' from debitmaster where TenantID=Tenant_Id group by customerid) 
+	dbm on dbm.customerid=cm.CustomerMasterID where cm.TenantId=Tenant_Id and crm.CreditAmount is not null and dbm.DebitAmount is not null;
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_GetCustomerList` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_GetCustomerList`(
+Tenant_Id int(11),
+Customer_name varchar(50)
+)
+BEGIN
+	select
+    CustomerMasterID,
+    CustomerName,
+    CustomerEmailID,
+    Gender,
+    MobileNo,
+    Address,
+    IsActive
+    from customermaster
+    where TenantID = Tenant_Id 
+    and CustomerName LIKE CONCAT('%',Customer_name,'%')
+    order by CustomerMasterID desc;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_GetCustomerName` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_GetCustomerName`(
+	Tenant_Id int(11),
+    SearchText varchar(50)
+)
+BEGIN
+	
+    Select CustomerMasterID,
+    Customername 
+    from customermaster 
+    where TenantID = Tenant_Id 
+    and IsActive = 1
+    and customername 
+    LIKE CONCAT('%', SearchText , '%');
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_GetForgetPassowrdMailContent` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_GetForgetPassowrdMailContent`(
+_TenantId int,
+_url varchar(3000),
+_emilId varchar(3000)
+)
+BEGIN
+	DECLARE MailSubject varchar(100);
+    DECLARE MailContent varchar(1000);
+    
+    Set MailContent=(SELECT Content FROM alertmasterconfiguration WHERE Subject = 'Forgot Password');
+    
+    Set MailContent=Replace(MailContent,'@CustomerURL',_url);
+    
+    Set MailSubject=(SELECT Subject FROM alertmasterconfiguration WHERE Subject = 'Forgot Password');
+    
+    Select MailContent, MailSubject;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_getSMTPDetails` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_getSMTPDetails`(Tenant_ID int)
+BEGIN
+	select * from tenantemaismsconfig where TenantID = Tenant_ID;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_GetStateList` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_GetStateList`()
+BEGIN
+	Select StateId, CountryId, StateName from statemaster;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_GetUserProfileDetails` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_GetUserProfileDetails`(
+	User_ID int(11)
+)
+BEGIN
+	Select um.UserId,
+	um.Firstname,
+	um.Lastname,
+	um.EmailId,
+	um.Mobileno,
+	um.Address,
+    tm.CompanyName,
+    cm.CityName,
+	um.ProfilePicture
+    
+    from UserMaster um
+    
+    left join TenantMaster tm on tm.CreatedBy=um.UserId
+    left join CityMaster cm on cm.CityId = um.CreatedBy
+    where UserId = User_ID;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_LogoutUser` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_LogoutUser`(
+	token_data nvarchar(500)
+)
+BEGIN
+	UPDATE currentsession
+    SET 
+		IsActive = 0,
+		LogOutOn = current_timestamp
+    WHERE
+		SecurityToken = token_data;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_UpdateCustomer` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_UpdateCustomer`(
+	CustomerID int(11),
+    TenantID int(11),
+    CustomerName varchar(100),
+    PhoneNumber varchar(10),
+    EmailId varchar(100),
+    Gender varchar(6),
+    Address varchar(100),
+    IsActive bit(1),
+    Modified_By int(11)
+)
+BEGIN
+	
+    UPDATE customermaster set 
+    TenantID =TenantID,
+    CustomerName = CustomerName,
+    MobileNo = PhoneNumber,
+    CustomerEmailID = EmailId,
+    Gender = Gender,
+    Address = Address,
+    IsActive = IsActive,
+    ModifyBy = Modified_By,
+    ModifiedDate = current_timestamp()
+    where CustomerMasterID = CustomerID;
+     
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_UpdateUserProfileDetails` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_UpdateUserProfileDetails`(
+	User_ID int(11),
+    First_Name varchar(50),
+    Last_Name varchar(50),
+    Mobile_No varchar(10),
+    Email_ID varchar(100),
+    Address varchar(100),
+    Profile_Picture varchar(100)
+)
+BEGIN
+SET @LastupdateID=User_ID;
+
+If 	Profile_Picture is not null && Profile_Picture != ''
+Then
+	UPDATE UserMaster SET
+    Firstname = First_Name,
+    Lastname = Last_Name,
+    Mobileno = Mobile_No,
+    EmailId = Email_ID,
+    Address = Address,
+    ProfilePicture = Profile_Picture,
+    ModifiedDate = current_timestamp()
+    WHERE UserId = User_ID;
+    
+Else 
+   
+   UPDATE UserMaster SET
+    Firstname = First_Name,
+    Lastname = Last_Name,
+    Mobileno = Mobile_No,
+    EmailId = Email_ID,
+    Address = Address,
+    ModifiedDate = current_timestamp()
+    WHERE UserId = User_ID;
+   
+ End IF;
+ 
+ Select @LastupdateID;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_UserChangePassword` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_UserChangePassword`(
+	_Password varchar(200),
+    _NewPassword varchar(200),
+    User_ID int(11),
+    Tenant_Id int(11)
+)
+BEGIN
+
+Declare varSecurePassword varchar(200);
+
+set varSecurePassword = (Select SecurePassword FROM usermaster where UserId=User_ID);
+
+If varSecurePassword = _Password Then
+
+	update usermaster set SecurePassword = _NewPassword, ModifiedDate = current_timestamp() 
+    where UserId = User_ID and TenantID = Tenant_Id;
+
+	Select 1;
+Else
+
+	Select 0;
+		
+End if;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_validateEmailId` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_validateEmailId`(Email_Id varchar(100))
+BEGIN
+	SELECT um.EmailId,um.TenantID,um.FirstName,um.LastName,um.UserID 'UserMasterID' FROM UserMaster um where EmailId = Email_Id and IsActive=1;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `SP_ValidateUserLogin` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_ValidateUserLogin`(
+Domain_Name nvarchar(150),
+User_EmailID nvarchar(100),
+User_Password nvarchar(255)
+)
+BEGIN
+
+	declare Tenant_Id int;
+	declare User_Id int;
+    declare App_ID varchar(10);
+    
+    SET Tenant_Id=(SELECT TenantID from tenantmaster tm where tm.DomainLink=Domain_Name);
+    SET App_ID =(SELECT AppID from tenantmaster tm where tm.TenantID=Tenant_Id);
+
+	SET User_Id=(SELECT	um.UserId from usermaster um 
+			     where um.EmailId=User_EmailID AND um.SecurePassword=User_Password AND um.TenantID=Tenant_Id AND IsActive=1 AND ifnull(isdeleted,0)=0);
+                 
+	IF User_Id > 0 THEN
+    
+		SELECT 1 AS 'Status', App_ID AS 'ApplicationId', User_Id as 'UserID', Tenant_Id AS 'Tenant_Id',
+         um.FirstName,
+         um.LastName 
+         from usermaster um where um.UserID = User_Id;
+    
+    ELSE
+		SELECT 0 AS 'Status','' AS 'ApplicationId',0 AS 'UserID',0 As 'Tenant_Id','' AS FirstName, '' AS LastName;
+    END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2020-12-16 17:43:03
